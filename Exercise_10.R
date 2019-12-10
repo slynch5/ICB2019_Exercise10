@@ -38,7 +38,7 @@ tumorSim <- function(N0=99,M0 = 1, rN= 0.1, rM = 0.1, K=1000000, timesteps=1000)
   Mt[1]=M0
   
   for(t in 1:(timesteps-1)){
-    if (t >= 125){ # The population reaches carrying capacity around timestep 125; drug treatment starts here
+    if (t >= 1000){ # The population reaches carrying capacity around timestep 125; drug treatment starts here
       rN=-0.1 # Change growth rates after drug treatment
       rM= 0.1*.5
       Nt[t+1]= Nt[t] + rN*Nt[t]*(1-((Nt[t]+Mt[t])/K))
@@ -65,4 +65,4 @@ ggplot() + geom_line(popOut, mapping = aes(x = time, y = Nt), color = 'blue') +
   geom_line(popOut, mapping = aes(x = time, y = Mt), color = 'red') + 
   xlab("Timesteps") + ylab("Number of Cells") + theme_bw()
 
-ggsave("tumorSimPlot.jpg", last_plot())
+# ggsave("tumorSimPlot.jpg", last_plot())
